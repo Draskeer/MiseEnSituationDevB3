@@ -20,9 +20,9 @@ const Login = () => {
 
       if (data.isLogin) {
         if (data.isAdmin) {
-          navigate("/dashboard/admin");
+          navigate(`/dashboard/admin/${username}`);
         } else {
-          navigate("/dashboard/teacher");
+          navigate(`/dashboard/teacher/${username}`);
         }
       }
     } catch (error) {
@@ -35,7 +35,7 @@ const Login = () => {
       {error && <p className="error">{error}</p>}
       <form onSubmit={submit}>
         <h2>Se connecter</h2>
-        <span>Nom d'utilisateur</span>
+        <span>Nom d&apos;utilisateur</span>
         <input
           type="text"
           name="username"

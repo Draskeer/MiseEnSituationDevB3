@@ -27,7 +27,7 @@ const Signup = () => {
       {message && <p>{message}</p>}
       <form onSubmit={submit}>
         <h2>Créer un compte</h2>
-        <span>Nom d'utilisateur</span>
+        <span>Nom d&apos;utilisateur</span>
         <input
           type="text"
           name="username"
@@ -46,8 +46,7 @@ const Signup = () => {
           <option value="Admin">Administrateur</option>
           <option value="Teacher">Professeur</option>
         </select>
-        <a href="/forgot-password">Mot de passe oublié ?</a>
-        <button type="submit">S'inscrire</button>
+        <button type="submit">S&apos;inscrire</button>
       </form>
     </div>
   );

@@ -5,19 +5,19 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/login/Login";
-import Teacher from "./pages/dashboard/Teacher";
+import Teacher from "./pages/dashboard/teacher";
 import Header from "./components/header";
 import Signup from "./pages/signup/Signup";
 
 const App = () => {
   return (
     <Router>
-      <Header />
+      {location.pathname !== "/login" && <Header />}
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard/teacher" element={<Teacher />} />
+        <Route path="/dashboard/teacher/:username" element={<Teacher />} />
       </Routes>
     </Router>
   );
