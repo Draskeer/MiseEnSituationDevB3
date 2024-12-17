@@ -8,6 +8,7 @@ const Header = () => {
       <img src={logo} alt="logo" />
       <h1>Groupe Saint-Exupéry</h1>
       <NavLink to="/login">Se connecter</NavLink>
+      <NavLink to="/signup">Créer un compte</NavLink>
     </header>
   );
 };

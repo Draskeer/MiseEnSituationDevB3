@@ -7,6 +7,7 @@ import {
 import Login from "./pages/login/Login";
 import Teacher from "./pages/dashboard/Teacher";
 import Header from "./components/header";
+import Signup from "./pages/signup/Signup";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/teacher" element={<Teacher />} />
       </Routes>
