@@ -1,8 +1,13 @@
 const express = require("express");
 const router = express.Router();
-
-router.get("/", (req, res) => {
-    res.json({ message: "Liste des utilisateurs" });
+const Student = require("../models/Student");
+router.get("/", async (req, res) => {
+  try {
+    const students = Student.find({});
+    res.json(students);
+  } catch (error) {
+    console.error(error);
+  }
 });
-
-module.exports = router; 
+router.get();
+module.exports = router;
