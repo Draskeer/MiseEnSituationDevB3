@@ -55,8 +55,7 @@ router.post("/signup", async (req, res) => {
         const newUser = new User({
             username,
             password: hashedPassword,
-            role,
-            class: role === "Teacher" ? className : undefined,
+            role
         });
 
         await newUser.save();
@@ -65,8 +64,7 @@ router.post("/signup", async (req, res) => {
             message: "Utilisateur créé avec succès.",
             user: {
                 username: newUser.username,
-                role: newUser.role,
-                class: newUser.class || null,
+                role: newUser.role
             },
         });
     } catch (error) {
@@ -77,9 +75,8 @@ router.post("/signup", async (req, res) => {
     }
 });
 
-// Route de test:
 router.get("/", (req, res) => {
-    res.json({ message: "Liste des utilisateurs" });
+    res.json({ message: "Api is working" });
 });
 
 module.exports = router;

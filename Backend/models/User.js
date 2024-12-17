@@ -15,14 +15,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: ["Admin", "Teacher"],
-    },
-    class: {
-        type: String,
-        required: function () {
-            return this.role === "Teacher";
-        },
-        trim: true
-    },
+    }
 }, {
     timestamps: true
 });
