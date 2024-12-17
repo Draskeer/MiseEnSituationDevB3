@@ -20,9 +20,9 @@ const Login = () => {
 
       if (data.isLogin) {
         if (data.isAdmin) {
-          navigate(`/dashboard/admin/${username}`);
+          navigate(`/dashboard/admin/${data.Id}`);
         } else {
-          navigate(`/dashboard/teacher/${username}`);
+          navigate(`/dashboard/teacher/${data.Id}`);
         }
       }
     } catch (error) {
