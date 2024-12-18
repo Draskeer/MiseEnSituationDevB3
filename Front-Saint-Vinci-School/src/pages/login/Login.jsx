@@ -1,4 +1,3 @@
-import "./login.css";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +18,11 @@ const Login = () => {
       });
 
       if (data.isLogin) {
+        if (data.isFirstConnection) {
+          navigate(`/${data.Id}/reset-password`);
+          return;
+        }
+
         if (data.isAdmin) {
           navigate(`/dashboard/admin/${data.Id}`);
         } else {
@@ -31,9 +35,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex flex-col min-h-screen flex items-center justify-center">
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <div className="login p-6 max-w-md w-full bg-white rounded-lg shadow-lg">
-        {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={submit}>
           <h2 className="text-2xl font-bold mb-6 text-center">Se connecter</h2>
 
