@@ -31,27 +31,63 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={submit}>
-        <h2>Se connecter</h2>
-        <span>Nom d&apos;utilisateur</span>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <span>Mot de passe</span>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <a href="/forgot-password">Mot de passe oublié ?</a>
-        <button type="submit">Se connecter</button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="login p-6 max-w-md w-full bg-white rounded-lg shadow-lg">
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <form onSubmit={submit}>
+          <h2 className="text-2xl font-bold mb-6 text-center">Se connecter</h2>
+
+          <div className="mb-4">
+            <label
+              htmlFor="username"
+              className="block text-sm font-semibold text-gray-700 mb-2"
+            >
+              Nom d&apos;utilisateur
+            </label>
+            <input
+              type="text"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              id="username"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block text-sm font-semibold text-gray-700 mb-2"
+            >
+              Mot de passe
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              id="password"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          <div className="mb-4 text-sm text-right">
+            <a
+              href="/forgot-password"
+              className="text-green-500 hover:underline"
+            >
+              Mot de passe oublié ?
+            </a>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            Se connecter
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
