@@ -10,6 +10,7 @@ import Teacher from "./pages/dashboard/teacher";
 import Signup from "./pages/signup/Signup";
 import UploadImportForm from "./pages/import";
 import ResetPassword from "./pages/resetPassword";
+import Repeater from "./pages/repeater";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/dashboard/teacher/:id" element={<Teacher />} />
         <Route path="/dashboard/admin/import" element={<UploadImportForm />} />
         <Route path="/dashboard/admin/:id" element={<Admin />} />
+        <Route path="/dashboard/admin/:id/repeater" element={<Repeater />} />
       </Routes>
     </Router>
   );
