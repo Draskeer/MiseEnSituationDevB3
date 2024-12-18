@@ -5,6 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/login/Login";
+import Admin from "./pages/dashboard/Admin";
 import Teacher from "./pages/dashboard/teacher";
 import Signup from "./pages/signup/Signup";
 import UploadImportForm from "./pages/import";
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/:id/reset-password" element={<ResetPassword />} />
         <Route path="/dashboard/teacher/:id" element={<Teacher />} />
         <Route path="/dashboard/admin/import" element={<UploadImportForm />} />
+        <Route path="/dashboard/admin/:id" element={<Admin />} />
       </Routes>
     </Router>
   );

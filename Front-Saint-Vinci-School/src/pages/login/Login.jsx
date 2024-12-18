@@ -18,7 +18,7 @@ const Login = () => {
       });
 
       if (data.isLogin) {
-        if (data.isFirstConnection) {
+        if (data.isFirstConnection && !data.isAdmin) {
           navigate(`/${data.Id}/reset-password`);
           return;
         }
@@ -73,15 +73,6 @@ const Login = () => {
               id="password"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
             />
-          </div>
-
-          <div className="mb-4 text-sm text-right">
-            <a
-              href="/forgot-password"
-              className="text-green-500 hover:underline"
-            >
-              Mot de passe oublié ?
-            </a>
           </div>
 
           <button

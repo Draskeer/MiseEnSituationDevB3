@@ -22,9 +22,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex flex-col min-h-screen flex items-center justify-center">
+      {message && <p className="text-red-500 mb-4">{message}</p>}
       <div className="signup p-6 max-w-md w-full bg-white rounded-lg shadow-lg">
-        {message && <p className="text-red-500 mb-4">{message}</p>}
         <form onSubmit={submit}>
           <h2 className="text-2xl font-bold mb-6 text-center">
             Créer un compte
