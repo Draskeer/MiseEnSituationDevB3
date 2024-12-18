@@ -26,6 +26,7 @@ router.post("/login", async (req, res) => {
         }
 
         return res.json({
+            Id: user._id,
             isLogin: true,
             isAdmin: user.role === "Admin",
         });
@@ -63,6 +64,7 @@ router.post("/signup", async (req, res) => {
         return res.status(201).json({
             message: "Utilisateur créé avec succès.",
             user: {
+                Id: newUser._id,
                 username: newUser.username,
                 role: newUser.role
             },

@@ -4,6 +4,7 @@ const cors = require('cors');
 const userRoutes = require("./routes/users");
 const classRoutes = require("./routes/class");
 const studentRoutes = require("./routes/students");
+const importRoute = require("./routes/import");
 
 const app = express();
 const port = 22222;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api/', userRoutes);
 app.use('/api/class', classRoutes);
 app.use('/api/students', studentRoutes);
+app.use('/api/import', importRoute);
 
 
 mongoose.connect('mongodb+srv://ScolarVinci:QJTBPX9FCINs0J4c@miseensituationdev.8gghw.mongodb.net/?retryWrites=true&w=majority&appName=MiseEnSituationDev')
