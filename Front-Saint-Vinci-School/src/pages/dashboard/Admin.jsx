@@ -98,6 +98,12 @@ const Admin = () => {
           >
             Élèves redoublants
           </NavLink>
+          <NavLink
+            to="import"
+            className="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors ml-4"
+          >
+            Importer un CSV
+          </NavLink>
         </div>
       </div>
     </>
