@@ -46,48 +46,33 @@ const Admin = () => {
 
   return (
     <>
-      <Header isConnected isAdmin />
-      <div className="flex-grow p-5">
-        <h1 className="mb-5 text-center text-xl font-bold">
-          Tableau de bord Admin
-        </h1>
+      <div className="container mx-auto px-4 py-8">
         {loading ? (
-          <p className="text-center text-gray-600">Chargement des classes...</p>
+          <div>Chargement...</div>
         ) : (
-          <div className="p-5 max-w-4xl mx-auto bg-gray-100 border border-gray-300 rounded-lg shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Liste des classes</h2>
-            <div className="list-none p-0 m-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Object.entries(classesByTeacher)
-                .sort(([a], [b]) => a.localeCompare(b))
-                .map(([teacher, promos]) => (
-                  <div
-                    key={teacher}
-                    className="p-4 bg-blue-500 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out"
-                  >
-                    <h3 className="text-lg font-semibold mb-3 border-b border-blue-400 pb-2">
-                      {formatTeacherName(teacher)}
-                    </h3>
-                    <ul className="space-y-2">
-                      {promos
-                        .sort((a, b) => a.promo.localeCompare(b.promo))
-                        .map(({ promo, id }) => (
-                          <li
-                            key={id}
-                            className="hover:translate-x-1 transition-transform"
-                          >
-                            <Link
-                              to={`/dashboard/teacher/${id}`}
-                              state={{ isAdmin: true }} // Pass admin status through state
-                              className="text-white hover:text-blue-100 flex items-center"
-                            >
-                              <span className="mr-2">→</span>
-                              {promo}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                ))}
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="grid gap-6">
+              {Object.entries(classesByTeacher).map(([teacherUsername, classes]) => (
+                <div key={teacherUsername} className="border rounded-lg p-4">
+                  <h2 className="text-xl font-semibold mb-3">
+                    {formatTeacherName(teacherUsername)}
+                  </h2>
+                  <ul className="space-y-2">
+                    {classes.map(({ promo }, index) => (
+                      <li key={index} className="bg-blue-500 rounded p-2">
+                        <Link
+                          to={`/dashboard/teacher/${id}`}
+                          state={{ isAdmin: true }}
+                          className="text-white hover:text-blue-100 flex items-center"
+                        >
+                          <span className="mr-2">→</span>
+                          {promo}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         )}

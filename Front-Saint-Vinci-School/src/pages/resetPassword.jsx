@@ -54,6 +54,7 @@ const ResetPassword = () => {
               type="password"
               name="old-password"
               value={oldPassword}
+              required
               onChange={(e) => setOldPassword(e.target.value)}
               id="old-password"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -71,6 +72,7 @@ const ResetPassword = () => {
               type="password"
               name="new-password"
               value={newPassword}
+              required
               onChange={(e) => setNewPassword(e.target.value)}
               id="new-password"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -88,6 +90,7 @@ const ResetPassword = () => {
               type="password"
               name="confirm-password"
               value={confirmPassword}
+              required
               onChange={(e) => setConfirmPassword(e.target.value)}
               id="confirm-password"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
