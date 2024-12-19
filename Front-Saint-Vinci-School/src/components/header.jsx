@@ -7,12 +7,20 @@ const Header = ({ isConnected, isAdmin }) => {
       <img src={logo} alt="logo" className="h-12 w-12" />
       <h1 className="flex-grow text-2xl font-bold">Groupe Saint-Exupéry</h1>
       {isAdmin && (
-        <NavLink
-          to="/signup"
-          className="bg-white text-green-500 px-3 py-1 text-sm rounded-md cursor-pointer"
-        >
-          Créer un compte
-        </NavLink>
+        <>
+          <NavLink
+            to="add-student"
+            className="bg-white text-green-500 px-3 py-1 text-sm rounded-md cursor-pointer"
+          >
+            Ajouter un élève
+          </NavLink>
+          <NavLink
+            to="/signup"
+            className="bg-white text-green-500 px-3 py-1 text-sm rounded-md cursor-pointer"
+          >
+            Créer un compte de professeur
+          </NavLink>
+        </>
       )}
       {isConnected && (
         <NavLink

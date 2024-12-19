@@ -71,7 +71,6 @@ const Admin = () => {
                             className="text-white underline hover:text-gray-300"
                           >
                             {promo}
-                            {console.log(id)}
                           </Link>
                         </li>
                       ))}
@@ -82,7 +81,15 @@ const Admin = () => {
             </ul>
           </div>
         )}
-        <NavLink to="repeater">Éleves redoublant</NavLink>
+        <NavLink
+          to="repeater"
+          className="mt-6 inline-block px-6 py-3 bg-green-500 text-white font-semibold text-center rounded-md transition-all transform hover:bg-green-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500"
+        >
+          Éleves redoublant
+        </NavLink>
+        <NavLink to="import" className="mt-6 inline-block px-6 py-3 bg-red-500 text-white font-semibold text-center rounded-md transition-all transform hover:bg-red-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500">
+          Clôturer l'année
+        </NavLink>
       </div>
     </>
   );
