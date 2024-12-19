@@ -10,7 +10,7 @@ const Signup = () => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://88.160.225.9:22222/api/signup", {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, {
         username,
         password,
         role,

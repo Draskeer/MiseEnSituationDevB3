@@ -12,10 +12,13 @@ const Login = () => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://88.160.225.9:22222/api/login", {
-        username,
-        password,
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+        {
+          username,
+          password,
+        }
+      );
 
       if (data.isLogin) {
         if (data.isFirstConnection && !data.isAdmin) {

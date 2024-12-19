@@ -10,7 +10,7 @@ const Repeater = () => {
     const fetchClasse = async () => {
       try {
         const { data } = await axios(
-          "http://88.160.225.9:22222/api/students/notValidating"
+          `${import.meta.env.VITE_BACKEND_URL}/api/students/notValidating`
         );
         setStudents(data);
       } catch (error) {

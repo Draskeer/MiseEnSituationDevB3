@@ -32,7 +32,7 @@ const UploadImportForm = () => {
       setResponse(null);
 
       const res = await axios.post(
-        "http://88.160.225.9:22222/api/import",
+        `${import.meta.env.VITE_BACKEND_URL}/api/import`,
         formData,
         {
           headers: {

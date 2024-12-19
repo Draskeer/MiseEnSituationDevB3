@@ -21,7 +21,7 @@ const Admin = () => {
     const fetchClasses = async () => {
       try {
         const { data } = await axios.get(
-          "http://88.160.225.9:22222/api/class/"
+          `${import.meta.env.VITE_BACKEND_URL}/api/class/`
         );
         const groupedClasses = data.classes.reduce((acc, currentClass) => {
           const teacherUsername = currentClass.prof?.username || "Non assigné";
