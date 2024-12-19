@@ -60,7 +60,7 @@ const UploadImportForm = () => {
   return (
     <>
       <Header isConnected />
-      <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="flex items-center justify-center p-6">
         <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
             Upload et Import de Fichier CSV
@@ -73,24 +73,20 @@ const UploadImportForm = () => {
               type="file"
               accept=".csv"
               onChange={handleFileChange}
-              className="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <button
               type="submit"
-              className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
+              className="w-full py-3 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               Importer
             </button>
           </form>
-
-          {/* Afficher la progression */}
           {uploadProgress > 0 && uploadProgress < 100 && (
             <p className="text-center mt-4 text-gray-600">
               Progression : {uploadProgress}%
             </p>
           )}
-
-          {/* Afficher le succès */}
           {response && (
             <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-md">
               <h3 className="font-semibold text-green-600">
@@ -101,8 +97,6 @@ const UploadImportForm = () => {
               </pre>
             </div>
           )}
-
-          {/* Afficher les erreurs */}
           {error && <p className="mt-6 text-center text-red-600">{error}</p>}
         </div>
       </div>
