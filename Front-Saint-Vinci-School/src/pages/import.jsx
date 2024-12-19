@@ -8,7 +8,6 @@ const UploadImportForm = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
-  // Gère la sélection du fichier
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setResponse(null);
@@ -16,7 +15,6 @@ const UploadImportForm = () => {
     setUploadProgress(0);
   };
 
-  // Gère la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
@@ -87,14 +85,36 @@ const UploadImportForm = () => {
               Progression : {uploadProgress}%
             </p>
           )}
-          {response && (
-            <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-md">
-              <h3 className="font-semibold text-green-600">
-                Importation réussie !
-              </h3>
-              <pre className="mt-2 text-green-700">
-                {JSON.stringify(response, null, 2)}
-              </pre>
+          {response?.profs && response.profs.length > 0 && (
+            <div>
+              <h2 className="text-xl font-semibold text-green-700 mt-8 mb-4">
+                <span role="img" aria-label="warning" className="mr-2">
+                  ⚠️
+                </span>
+                LOGIN PROFESSEURS (COPIEZ AVANT DE QUITTER !!!)
+              </h2>
+              {response.profs.map((prof, index) => (
+                <div key={index} className="mt-4">
+                  <div className="p-6 bg-gradient-to-r from-green-200 via-green-300 to-green-400 border-2 border-green-500 rounded-lg shadow-lg">
+                    <div className="mb-4">
+                      <span className="font-semibold text-green-800">
+                        Nom d'utilisateur:
+                      </span>
+                      <span className="ml-2 text-green-900">
+                        {prof.username}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-green-800">
+                        Mot de passe:
+                      </span>
+                      <span className="ml-2 text-green-900">
+                        {prof.password}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
           {error && <p className="mt-6 text-center text-red-600">{error}</p>}
