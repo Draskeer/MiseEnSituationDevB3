@@ -26,6 +26,7 @@ const Header = ({ isConnected, isAdmin }) => {
         <NavLink
           to="/login"
           className="bg-white text-green-500 px-3 py-1 text-sm rounded-md cursor-pointer"
+          onClick={() => localStorage.removeItem("token")}
         >
           Se déconnecter
         </NavLink>
