@@ -20,6 +20,9 @@ const Login = () => {
         }
       );
 
+      data.token ? localStorage.setItem("token", data.token) : null;
+      axios.defaults.headers["Authorization"] = `Bearer ${data.token}`;
+
       if (data.isLogin) {
         if (data.isFirstConnection && !data.isAdmin) {
           navigate(`/${data.Id}/reset-password`);

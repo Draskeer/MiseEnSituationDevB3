@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Header from "../components/Header";
 import axios from "axios";
 import { useState } from "react";
+import { jsPDF } from "jspdf";
 
 const Repeater = () => {
   const [students, setStudents] = useState([]);
@@ -21,9 +22,42 @@ const Repeater = () => {
     fetchClasse();
   }, []);
 
+  // Fonction pour générer le PDF
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.setFont("helvetica");
+    doc.setFontSize(12);
+
+    // Ajouter un titre
+    doc.text("Liste des étudiants redoublants", 20, 20);
+
+    // Ajouter les étudiants à la liste
+    students.forEach((student, index) => {
+      doc.text(
+        `${index + 1}. ${student.firstName} ${student.lastName} - Classe: ${
+          student.classLevel
+        }`,
+        20,
+        30 + index * 10
+      );
+    });
+
+    // Télécharger le fichier PDF
+    doc.save("eleves_redoublants.pdf");
+  };
+
   return (
     <>
       <Header isConnected isAdmin />
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold">Élèves redoublants</h2>
+        <button
+          onClick={generatePDF}
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all duration-300"
+        >
+          Télécharger PDF
+        </button>
+      </div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mx-auto max-w-screen-lg">
         {students.map((student, index) => (
           <li

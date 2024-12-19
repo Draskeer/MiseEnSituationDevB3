@@ -4,6 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import axios from "axios";
 import Login from "./pages/login/Login";
 import Admin from "./pages/dashboard/Admin";
 import Teacher from "./pages/dashboard/teacher";
@@ -14,6 +15,10 @@ import Repeater from "./pages/repeater";
 import AddStudent from "./pages/addStudent";
 
 const App = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+  }
   return (
     <Router>
       <Routes>
