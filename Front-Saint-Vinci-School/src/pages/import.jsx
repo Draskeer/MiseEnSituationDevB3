@@ -31,17 +31,21 @@ const UploadImportForm = () => {
       setError(null);
       setResponse(null);
 
-      const res = await axios.post("http://88.160.225.9:22222/api/import", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          );
-          setUploadProgress(percentCompleted);
-        },
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/import`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            setUploadProgress(percentCompleted);
+          },
+        }
+      );
 
       setResponse(res.data);
     } catch (err) {
