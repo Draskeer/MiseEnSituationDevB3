@@ -52,6 +52,7 @@ const Login = () => {
               type="text"
               name="username"
               value={username}
+              required
               onChange={(e) => setUsername(e.target.value)}
               id="username"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -69,6 +70,7 @@ const Login = () => {
               type="password"
               name="password"
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
               id="password"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"

@@ -8,7 +8,6 @@ const UploadImportForm = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
-  // Gère la sélection du fichier
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setResponse(null);
@@ -16,7 +15,6 @@ const UploadImportForm = () => {
     setUploadProgress(0);
   };
 
-  // Gère la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
