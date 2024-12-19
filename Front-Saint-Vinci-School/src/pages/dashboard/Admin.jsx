@@ -6,9 +6,16 @@ import { useParams } from "react-router-dom";
 
 const Admin = () => {
   const { id } = useParams();
-
   const [classesByTeacher, setClassesByTeacher] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const formatTeacherName = (username) => {
+    if (!username || username === "Pas de Prof") return "Non assigné";
+    return username
+      .split(/[._-]/)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+      .join(" ");
+  };
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -16,10 +23,8 @@ const Admin = () => {
         const { data } = await axios.get(
           "http://88.160.225.9:22222/api/class/"
         );
-        const classes = data.classes;
-
-        const groupedClasses = classes.reduce((acc, currentClass) => {
-          const teacherUsername = currentClass.prof?.username || "Pas de Prof";
+        const groupedClasses = data.classes.reduce((acc, currentClass) => {
+          const teacherUsername = currentClass.prof?.username || "Non assigné";
           if (!acc[teacherUsername]) {
             acc[teacherUsername] = [];
           }
@@ -29,7 +34,6 @@ const Admin = () => {
           });
           return acc;
         }, {});
-
         setClassesByTeacher(groupedClasses);
       } catch (error) {
         console.error("Erreur lors de la récupération des classes:", error);
@@ -37,59 +41,49 @@ const Admin = () => {
         setLoading(false);
       }
     };
-
     fetchClasses();
   }, []);
 
   return (
     <>
-      <Header isConnected isAdmin />
-      <div className="flex-grow p-5">
-        <h1 className="mb-5 text-center text-xl font-bold">
-          Tableau de bord Admin
-        </h1>
+      <div className="container mx-auto px-4 py-8">
         {loading ? (
-          <p>Chargement des classes...</p>
+          <div>Chargement...</div>
         ) : (
-          <div className="p-5 max-w-4xl mx-auto bg-gray-100 border border-gray-300 rounded-lg shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Liste des classes</h2>
-            <ul className="list-none p-0 m-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Object.entries(classesByTeacher).map(([teacher, promos]) => (
-                <li
-                  key={teacher}
-                  className="p-3 bg-blue-500 text-white rounded-lg font-bold text-sm transition-transform transform hover:scale-105 hover:bg-blue-600"
-                >
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      Classe de {teacher}
-                    </h3>
-                    <ul className="list-disc ml-4">
-                      {promos.map(({ promo, id }) => (
-                        <li key={id}>
-                          <Link
-                            to={`/dashboard/teacher/${id}`}
-                            className="text-white underline hover:text-gray-300"
-                          >
-                            {promo}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="grid gap-6">
+              {Object.entries(classesByTeacher).map(([teacherUsername, classes]) => (
+                <div key={teacherUsername} className="border rounded-lg p-4">
+                  <h2 className="text-xl font-semibold mb-3">
+                    {formatTeacherName(teacherUsername)}
+                  </h2>
+                  <ul className="space-y-2">
+                    {classes.map(({ promo }, index) => (
+                      <li key={index} className="bg-blue-500 rounded p-2">
+                        <Link
+                          to={`/dashboard/teacher/${id}`}
+                          state={{ isAdmin: true }}
+                          className="text-white hover:text-blue-100 flex items-center"
+                        >
+                          <span className="mr-2">→</span>
+                          {promo}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
-        <NavLink
-          to="repeater"
-          className="mt-6 inline-block px-6 py-3 bg-green-500 text-white font-semibold text-center rounded-md transition-all transform hover:bg-green-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500"
-        >
-          Éleves redoublant
-        </NavLink>
-        <NavLink to="import" className="mt-6 inline-block px-6 py-3 bg-red-500 text-white font-semibold text-center rounded-md transition-all transform hover:bg-red-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500">
-          Clôturer l'année
-        </NavLink>
+        <div className="mt-6 text-center">
+          <NavLink
+            to="repeater"
+            className="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            Élèves redoublants
+          </NavLink>
+        </div>
       </div>
     </>
   );
