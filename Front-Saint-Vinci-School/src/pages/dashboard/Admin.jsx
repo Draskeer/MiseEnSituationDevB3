@@ -14,6 +14,7 @@ const Admin = () => {
 
   const [classesByTeacher, setClassesByTeacher] = useState({});
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
 
   const formatTeacherName = (username) => {
     if (!username || username === "Pas de Prof") return "Non assigné";
@@ -53,6 +54,7 @@ const Admin = () => {
   return (
     <>
       <Header isConnected isAdmin />
+      {message && alert(message)}
       <div className="flex-grow p-5">
         <h1 className="mb-5 text-center text-xl font-bold">
           Tableau de bord Admin
@@ -110,6 +112,23 @@ const Admin = () => {
           >
             Importer un CSV
           </NavLink>
+          <button
+            onClick={async () => {
+              const isConfirmed = window.confirm(
+                "Êtes-vous sûr de vouloir passer à l'année suivante ? Cette action est irréversible."
+              );
+              if (isConfirmed) {
+                await axios.post(
+                  `${import.meta.env.VITE_BACKEND_URL}/api/class/validate`
+                );
+                window.location.reload();
+                setMessage("Année suivante lancée avec succès");
+              }
+            }}
+            className="inline-block px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors ml-4"
+          >
+            Passer à l'année suivante
+          </button>
         </div>
       </div>
     </>
