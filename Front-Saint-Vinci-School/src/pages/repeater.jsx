@@ -49,32 +49,38 @@ const Repeater = () => {
   return (
     <>
       <Header isConnected isAdmin />
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Élèves redoublants</h2>
+      <div className="flex justify-between items-center mb-6 px-6 py-4 bg-gray-50 shadow-md rounded-lg">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          Élèves redoublants
+        </h2>
         <button
           onClick={generatePDF}
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all duration-300"
+          className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
         >
           Télécharger PDF
         </button>
       </div>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mx-auto max-w-screen-lg">
-        {students.map((student, index) => (
-          <li
-            key={index}
-            className="flex flex-col items-start p-4 bg-white rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 w-full"
-          >
-            <div className="flex flex-col mb-2">
-              <span className="text-lg font-semibold text-gray-800">
-                {student.firstName} {student.lastName}
-              </span>
-              <span className="text-sm font-medium text-gray-500">
-                {student.classLevel}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {students.length === 0 ? (
+        <p className="self-center font-bold">Il n'y a pas de redoublants.</p>
+      ) : (
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 mx-auto max-w-screen-xl">
+          {students.map((student, index) => (
+            <li
+              key={index}
+              className="flex flex-col items-start p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl hover:bg-gray-50 transition-all duration-300 w-full transform hover:scale-105"
+            >
+              <div className="flex flex-col mb-4">
+                <span className="text-xl font-semibold text-gray-800">
+                  {student.firstName} {student.lastName}
+                </span>
+                <span className="text-sm font-medium text-gray-500 mt-1">
+                  Niveau : {student.classLevel}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
