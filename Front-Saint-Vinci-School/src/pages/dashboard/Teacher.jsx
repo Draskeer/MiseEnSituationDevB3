@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 
 const Teacher = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const { id } = useParams();
   const location = useLocation();
   const [classe, setClasse] = useState(null);
