@@ -14,12 +14,6 @@ const Header = ({ isConnected, isAdmin }) => {
           >
             Ajouter un élève
           </NavLink>
-          {/* <NavLink
-            to="/signup"
-            className="bg-white text-green-500 px-3 py-1 text-sm rounded-md cursor-pointer"
-          >
-            Créer un compte de professeur
-          </NavLink> */}
         </>
       )}
       {isConnected && (

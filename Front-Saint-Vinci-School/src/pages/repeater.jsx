@@ -22,16 +22,13 @@ const Repeater = () => {
     fetchClasse();
   }, []);
 
-  // Fonction pour générer le PDF
   const generatePDF = () => {
     const doc = new jsPDF();
     doc.setFont("helvetica");
     doc.setFontSize(12);
 
-    // Ajouter un titre
     doc.text("Liste des étudiants redoublants", 20, 20);
 
-    // Ajouter les étudiants à la liste
     students.forEach((student, index) => {
       doc.text(
         `${index + 1}. ${student.firstName} ${student.lastName} - Classe: ${
@@ -42,7 +39,6 @@ const Repeater = () => {
       );
     });
 
-    // Télécharger le fichier PDF
     doc.save("eleves_redoublants.pdf");
   };
 

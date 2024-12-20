@@ -8,7 +8,7 @@ const Teacher = () => {
   const location = useLocation();
   const [classe, setClasse] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
-  const isAdmin = location.state?.isAdmin || false; // Get admin status from location state
+  const isAdmin = location.state?.isAdmin || false;
 
   useEffect(() => {
     const fetchClasse = async () => {
@@ -25,7 +25,7 @@ const Teacher = () => {
   }, [id]);
 
   const handleStatusChange = async (student, studentIndex) => {
-    if (!isAdmin) return; // Prevent non-admins from changing status
+    if (!isAdmin) return;
 
     setIsUpdating(true);
     try {
